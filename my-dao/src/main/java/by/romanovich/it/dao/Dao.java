@@ -2,15 +2,22 @@ package by.romanovich.it.dao;
 
 import java.util.List;
 
+/**
+ * Interface for DaoImpl class.
+ * @see by.romanovich.it.dao
+ * @author Romanovich Andrei
+ * @version 1.0
+ * @param <T>
+ */
 public interface Dao<T> {
 
-    int create(T t);
+    T create(T t);
 
     List<T> readAll();
 
-    int update(T t);
+    void update(T t);
 
-    int delete(T t);
+    void delete(T t);
 
 
 }
