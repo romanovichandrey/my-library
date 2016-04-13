@@ -61,4 +61,11 @@ public class Citys implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Citys{" +
+                "idCity=" + idCity +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

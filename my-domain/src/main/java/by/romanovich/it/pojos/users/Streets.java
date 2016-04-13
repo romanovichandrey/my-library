@@ -61,5 +61,11 @@ public class Streets implements Serializable {
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "Steerts{" +
+                "idStreet=" + idStreet +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
