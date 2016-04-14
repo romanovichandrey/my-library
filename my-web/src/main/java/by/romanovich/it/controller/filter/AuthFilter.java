@@ -50,6 +50,7 @@ public class AuthFilter implements Filter {
         dispatcher = servletRequest.getRequestDispatcher("index.jsp");
         dispatcher.forward(servletRequest, servletResponse);
         return;
+
     }
 
     @Override
