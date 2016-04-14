@@ -15,7 +15,7 @@
   <c:otherwise>
     <center>
       <h3>Welcome to my library</h3>
-    <form method="post" action="/books">
+    <form method="post" action="books">
       <table width="30%" border="1" cellpading="3">
         <tr>
           <th colspan="2">Authorization</th>
@@ -36,7 +36,7 @@
       </table>
     </form>
       <p>Yet Not Registered!!</p>
-      <a href="/login">Registration</a>
+      <a href="login">Registration</a>
     </center>
   </c:otherwise>
 </c:choose>

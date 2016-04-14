@@ -1,12 +1,9 @@
 package by.romanovich.it.dao;
 
-import by.romanovich.it.pojos.users.Citys;
 import by.romanovich.it.util.PullDataSourceConnection;
 import junit.framework.Assert;
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Test the DaoCitysImpl
@@ -21,16 +18,8 @@ public class DaoCitysImplTest extends Assert {
 
     private DaoCitysImpl daoCitys = DaoCitysImpl.getDaoCitys(con);
 
-    List<Citys> citysList = new ArrayList<Citys>();
-
 
     public void testReadAll() throws Exception {
         assertNotNull(daoCitys.readAll());
-    }
-
-
-    public static void main(String[] args) throws Exception {
-        DaoCitysImplTest daoTest = new DaoCitysImplTest();
-        daoTest.testReadAll();
     }
 }

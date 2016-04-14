@@ -49,7 +49,7 @@ public class DaoUsersImpl implements DaoUsers {
         this.con = con;
     }
 
-    public static DaoUsersImpl getDaoUsers(Connection con) {
+    public synchronized static DaoUsersImpl getDaoUsers(Connection con) {
         if(daoUsers == null)
             return new DaoUsersImpl(con);
         return daoUsers;

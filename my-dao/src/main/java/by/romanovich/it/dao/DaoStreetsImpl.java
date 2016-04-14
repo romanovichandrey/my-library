@@ -41,7 +41,7 @@ public class DaoStreetsImpl implements Dao<Streets> {
         this.con = con;
     }
 
-    public static DaoStreetsImpl getDaoStreets(Connection con) {
+    public synchronized static DaoStreetsImpl getDaoStreets(Connection con) {
         if(daoStreets == null)
             return new DaoStreetsImpl(con);
         return daoStreets;

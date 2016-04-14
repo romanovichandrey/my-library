@@ -46,7 +46,7 @@ public class DaoBooksImpl implements Dao<Books> {
         this.con = con;
     }
 
-    public static DaoBooksImpl getDaoBooks(Connection con) {
+    public synchronized static DaoBooksImpl getDaoBooks(Connection con) {
         if(daoBooks == null)
             return new DaoBooksImpl(con);
         return daoBooks;

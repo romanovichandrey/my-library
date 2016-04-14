@@ -37,7 +37,7 @@ public class AuthFilter implements Filter {
             } else {
                 user = (Users) session.getAttribute("user");
                 if (serviceUser.isCheckAuthUser(user.getLogin(), user.getPassword())) {
-                    dispatcher = servletRequest.getRequestDispatcher("/books");
+                    dispatcher = servletRequest.getRequestDispatcher("books");
                     dispatcher.forward(servletRequest, servletResponse);
                 } else {
                     dispatcher = servletRequest.getRequestDispatcher("WEB-INF/views/header.jsp");

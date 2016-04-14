@@ -67,7 +67,7 @@ public class LoginController extends HttpServlet {
                 log.error(e);
             }
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/books");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("books");
         dispatcher.forward(request, response);
     }
 }

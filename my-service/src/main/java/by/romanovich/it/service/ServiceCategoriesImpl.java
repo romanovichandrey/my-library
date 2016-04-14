@@ -26,7 +26,7 @@ public class ServiceCategoriesImpl implements ServiceCategories {
         daoCategories = DaoCategoriesImpl.getDaoCategories(con);
     }
 
-    public static ServiceCategoriesImpl getServiceCategories() {
+    public synchronized static ServiceCategoriesImpl getServiceCategories() {
         if(serviceCategories == null)
             return new ServiceCategoriesImpl();
         return serviceCategories;
@@ -40,6 +40,8 @@ public class ServiceCategoriesImpl implements ServiceCategories {
             con.commit();
         } catch (SQLException e) {
             log.error(e);
+        } finally {
+            con.close();
         }
         con.rollback();
         return null;
@@ -58,6 +60,8 @@ public class ServiceCategoriesImpl implements ServiceCategories {
             con.commit();
         } catch (SQLException e) {
             log.error(e);
+        } finally {
+            con.close();
         }
         con.rollback();
 
@@ -72,6 +76,8 @@ public class ServiceCategoriesImpl implements ServiceCategories {
                 con.commit();
             } catch (SQLException e) {
                 log.error(e);
+            } finally {
+                con.close();
             }
             con.rollback();
         }

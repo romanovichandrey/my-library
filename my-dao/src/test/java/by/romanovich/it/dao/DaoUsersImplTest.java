@@ -1,31 +1,31 @@
 package by.romanovich.it.dao;
 
+import by.romanovich.it.util.PullDataSourceConnection;
+import junit.framework.Assert;
 import org.junit.Test;
 
-public class DaoUsersImplTest {
+import java.sql.Connection;
+
+public class DaoUsersImplTest extends Assert {
+
+    private PullDataSourceConnection pull = PullDataSourceConnection.getPull();
+
+    private Connection con = pull.readConnection();
+
+    private DaoUsersImpl daoUsers = DaoUsersImpl.getDaoUsers(con);
+
+    private String login = null;
+
+    private String password = null;
 
     @Test
-    public void testGetDaoUsers() throws Exception {
-
-    }
-
-    @Test
-    public void testCreate() throws Exception {
-
+    public void testgetUsersByLoginAndPassword() throws Exception {
+        assertNull(daoUsers.getUsersByLoginAndPassword(login, password));
     }
 
     @Test
     public void testReadAll() throws Exception {
-
+        assertNotNull(daoUsers.readAll());
     }
 
-    @Test
-    public void testUpdate() throws Exception {
-
-    }
-
-    @Test
-    public void testDelete() throws Exception {
-
-    }
 }

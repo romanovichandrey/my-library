@@ -67,7 +67,7 @@ public class PullDataSourceConnection {
         }
     }
 
-    public static PullDataSourceConnection getPull() {
+    public synchronized static PullDataSourceConnection getPull() {
         if(pull == null)
             return new PullDataSourceConnection();
         return pull;

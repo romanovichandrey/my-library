@@ -41,7 +41,7 @@ public class DaoCitysImpl implements Dao<Citys> {
         this.con = con;
     }
 
-    public static DaoCitysImpl getDaoCitys(Connection con) {
+    public synchronized static DaoCitysImpl getDaoCitys(Connection con) {
         if(daoCitys == null)
             return new DaoCitysImpl(con);
         return daoCitys;

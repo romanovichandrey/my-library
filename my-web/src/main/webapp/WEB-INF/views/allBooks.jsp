@@ -51,7 +51,7 @@
   </tbody>
 </table>
 <p>
-  <a href="/addBook">Добавать книгу</a>
+  <a href="addBook">Добавать книгу</a>
 </p>
 <jsp:include page="footer.jsp" />
 </body>

@@ -37,7 +37,7 @@ public class ServiceUsersImpl implements ServiceUser {
         daoUsers = DaoUsersImpl.getDaoUsers(con);
     }
 
-    public static ServiceUsersImpl getServiceUser() {
+    public synchronized static ServiceUsersImpl getServiceUser() {
         if(serviceUser == null)
             return new ServiceUsersImpl();
         return serviceUser;
@@ -55,6 +55,8 @@ public class ServiceUsersImpl implements ServiceUser {
             return users;
         } catch (SQLException e) {
             log.error(e);
+        } finally {
+            con.close();
         }
         con.rollback();
         return null;
@@ -77,6 +79,8 @@ public class ServiceUsersImpl implements ServiceUser {
             con.commit();
         } catch (SQLException e) {
             log.error(e);
+        } finally {
+            con.close();
         }
         con.rollback();
     }
@@ -90,6 +94,8 @@ public class ServiceUsersImpl implements ServiceUser {
                 con.commit();
             } catch (SQLException e) {
                 log.error(e);
+            } finally {
+                con.close();
             }
             con.rollback();
         }

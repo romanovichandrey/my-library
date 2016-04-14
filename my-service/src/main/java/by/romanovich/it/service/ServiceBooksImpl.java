@@ -32,7 +32,7 @@ public class ServiceBooksImpl implements ServiceBook {
         daoBooks = DaoBooksImpl.getDaoBooks(con);
     }
 
-    public static ServiceBooksImpl getServiceBooks() {
+    public synchronized static ServiceBooksImpl getServiceBooks() {
         if(serviceBooks == null)
             return new ServiceBooksImpl();
         return serviceBooks;
@@ -48,6 +48,8 @@ public class ServiceBooksImpl implements ServiceBook {
                 return books;
             } catch (SQLException e) {
                 log.error(e);
+            }finally {
+                con.close();
             }
         con.rollback();
         return null;
@@ -69,6 +71,8 @@ public class ServiceBooksImpl implements ServiceBook {
                 con.commit();
             } catch (SQLException e) {
                 log.error(e);
+            } finally {
+                con.close();
             }
             con.rollback();
         }
@@ -83,6 +87,8 @@ public class ServiceBooksImpl implements ServiceBook {
                 con.commit();
             } catch (SQLException e) {
                 log.error(e);
+            } finally {
+                con.close();
             }
             con.rollback();
         }

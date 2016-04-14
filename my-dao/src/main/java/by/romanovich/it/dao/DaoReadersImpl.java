@@ -45,7 +45,7 @@ public class DaoReadersImpl implements Dao<Readers> {
         this.con = con;
     }
 
-    public static DaoReadersImpl getDaoReaders(Connection con) {
+    public synchronized static DaoReadersImpl getDaoReaders(Connection con) {
         if(daoReaders == null)
             return new DaoReadersImpl(con);
         return daoReaders;

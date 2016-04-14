@@ -41,7 +41,7 @@ public class DaoCategoriesImpl implements Dao<Categories> {
         this.con = con;
     }
 
-    public static DaoCategoriesImpl getDaoCategories(Connection con) {
+    public synchronized static DaoCategoriesImpl getDaoCategories(Connection con) {
         if(daoCategories == null)
             return new DaoCategoriesImpl(con);
         return daoCategories;

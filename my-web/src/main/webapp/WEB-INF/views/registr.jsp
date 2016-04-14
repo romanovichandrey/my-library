@@ -22,7 +22,7 @@
   <c:otherwise>
     <center>
       <p>Yet Not Registered!!</p>
-      <form method="post" action="/login">
+      <form method="post" action="login">
         <table width="30%" border="1" cellpading="3">
           <tr>
             <th colspan="2">Registration</th>

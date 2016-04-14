@@ -1,31 +1,25 @@
 package by.romanovich.it.dao;
 
+import by.romanovich.it.util.PullDataSourceConnection;
+import junit.framework.Assert;
 import org.junit.Test;
 
-public class DaoStreetsImplTest {
+import java.sql.Connection;
 
-    @Test
-    public void testGetDaoStreets() throws Exception {
+public class DaoStreetsImplTest extends Assert {
 
-    }
+    private PullDataSourceConnection pull = PullDataSourceConnection.getPull();
 
-    @Test
-    public void testCreate() throws Exception {
+    private Connection con = pull.readConnection();
 
-    }
+    private DaoStreetsImpl daoStreets = DaoStreetsImpl.getDaoStreets(con);
 
     @Test
     public void testReadAll() throws Exception {
 
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
+        assertNotNull(daoStreets.readAll());
 
     }
 
-    @Test
-    public void testDelete() throws Exception {
 
-    }
 }
