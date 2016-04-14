@@ -23,11 +23,13 @@ public class PullDataSourceConnection {
 
     private InputStream inputStream;
 
+    private static PullDataSourceConnection pull;
+
     private static final String WAY = "mySql.properties";
 
     private static final Logger log = Logger.getLogger(PullDataSourceConnection.class);
 
-    public PullDataSourceConnection() {
+    private PullDataSourceConnection() {
         comboPool = new ComboPooledDataSource();
         prop = new Properties();
         try {
@@ -63,6 +65,12 @@ public class PullDataSourceConnection {
         } catch (IOException e) {
             log.error(e);
         }
+    }
+
+    public static PullDataSourceConnection getPull() {
+        if(pull == null)
+            return new PullDataSourceConnection();
+        return pull;
     }
 
     /**

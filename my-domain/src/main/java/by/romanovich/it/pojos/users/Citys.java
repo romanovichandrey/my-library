@@ -20,6 +20,10 @@ public class Citys implements Serializable {
     public Citys() {
     }
 
+    public Citys(String name) {
+        this.name = name;
+    }
+
     public Citys(Integer idCity, String name) {
         this.idCity = idCity;
         this.name = name;
@@ -68,4 +72,6 @@ public class Citys implements Serializable {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+
 }

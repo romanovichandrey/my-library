@@ -26,6 +26,12 @@ public class Users implements Serializable {
     public Users() {
     }
 
+    public Users(String login, String password, Readers reader) {
+        this.login = login;
+        this.password = password;
+        this.reader = reader;
+    }
+
     public Users(Integer idUser, String login, String password, Readers reader) {
         this.idUser = idUser;
         this.login = login;

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class DaoCitysImplTest extends Assert {
 
-    private PullDataSourceConnection pull = new PullDataSourceConnection();
+    private PullDataSourceConnection pull = PullDataSourceConnection.getPull();
 
     private Connection con = pull.readConnection();
 

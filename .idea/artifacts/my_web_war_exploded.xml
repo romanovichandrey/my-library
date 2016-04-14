@@ -7,16 +7,18 @@
           <element id="module-output" name="my-web" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: by.romanovich.it:my-serv:1.0-SNAPSHOT" />
+          <element id="archive" name="my-domain-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="my-domain" />
+          </element>
+          <element id="archive" name="my-service-1.0-SNAPAHOT.jar">
+            <element id="module-output" name="my-service" />
+          </element>
           <element id="archive" name="my-dao-1.0-SNAPSHOT.jar">
             <element id="module-output" name="my-dao" />
           </element>
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.1" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
-          <element id="archive" name="my-domain-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="my-domain" />
-          </element>
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />

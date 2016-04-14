@@ -12,19 +12,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ServiceUsersImpl implements Service {
+public class ServiceUsersImpl implements ServiceUser {
 
-    private PullDataSourceConnection pull = new PullDataSourceConnection();
+    private PullDataSourceConnection pull = PullDataSourceConnection.getPull();
 
     private Connection con = pull.readConnection();
 
-    private DaoCitysImpl daoCitys;
+    private Dao<Citys> daoCitys;
 
-    private DaoStreetsImpl daoStreets;
+    private Dao<Streets> daoStreets;
 
-    private DaoReadersImpl daoReaders;
+    private Dao<Readers> daoReaders;
 
-    private DaoUsersImpl daoUsers;
+    private DaoUsers daoUsers;
 
     private static ServiceUsersImpl serviceUser;
 
@@ -44,13 +44,13 @@ public class ServiceUsersImpl implements Service {
     }
 
     @Override
-    public Users create(Users users, Citys citys, Streets streets, Readers readers) throws SQLException {
+    public Users create(Citys citys, Streets streets, Readers readers, Users users) throws SQLException {
         try {
             con.setAutoCommit(false);
             daoCitys.create(citys);
             daoStreets.create(streets);
             daoReaders.create(readers);
-            daoUsers.create(users);
+            users = daoUsers.create(users);
             con.commit();
             return users;
         } catch (SQLException e) {
@@ -62,7 +62,8 @@ public class ServiceUsersImpl implements Service {
 
     @Override
     public List<Users> readAll() {
-        return daoUsers.readAll();
+        List<Users> usersList = daoUsers.readAll();
+        return usersList;
     }
 
     @Override
@@ -81,9 +82,18 @@ public class ServiceUsersImpl implements Service {
     }
 
     @Override
-    public void delete(Users users) {
-        if(users != null)
-            daoUsers.delete(users);
+    public void delete(Users users) throws SQLException{
+        if(users != null) {
+            try {
+                con.setAutoCommit(false);
+                daoUsers.delete(users);
+                con.commit();
+            } catch (SQLException e) {
+                log.error(e);
+            }
+            con.rollback();
+        }
+
     }
 
     @Override

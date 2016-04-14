@@ -32,6 +32,14 @@ public class Readers implements Serializable {
     public Readers() {
     }
 
+    public Readers(String name, String surname, String userTel, Citys city, Streets street) {
+        this.name = name;
+        this.surname = surname;
+        this.userTel = userTel;
+        this.city = city;
+        this.street = street;
+    }
+
     public Readers(Integer idReader, String name, String surname, String userTel, Citys city, Streets street) {
         this.idReader = idReader;
         this.name = name;
@@ -117,4 +125,15 @@ public class Readers implements Serializable {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Readers{" +
+                "idReader=" + idReader +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", userTel='" + userTel + '\'' +
+                ", city=" + city +
+                ", street=" + street +
+                '}';
+    }
 }

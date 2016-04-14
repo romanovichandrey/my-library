@@ -53,7 +53,7 @@ public class DaoCitysImpl implements Dao<Citys> {
             ps = con.prepareStatement(INSERT);
             ps.setString(1, citys.getName());
             ps.executeUpdate();
-            con.close();
+
             log.info("addCity " + citys);
             return citys;
         } catch (SQLException e) {
@@ -71,7 +71,7 @@ public class DaoCitysImpl implements Dao<Citys> {
             while (rs.next()) {
                 citysList.add(new Citys(rs.getInt("id_city"), rs.getString("c_name")));
             }
-            con.close();
+
             log.info("citysList " + citysList);
             return citysList;
         } catch (SQLException e) {
@@ -87,7 +87,7 @@ public class DaoCitysImpl implements Dao<Citys> {
             ps.setString(1, citys.getName());
             ps.setInt(2, citys.getIdCity());
             ps.executeUpdate();
-            con.close();
+
             log.info("updateCity " + citys);
         } catch (SQLException e) {
             log.error(e);
@@ -100,7 +100,7 @@ public class DaoCitysImpl implements Dao<Citys> {
             ps = con.prepareStatement(DELETE);
             ps.setInt(1, citys.getIdCity());
             ps.executeUpdate();
-            con.close();
+
             log.info("deleteCity " + citys);
         } catch (SQLException e) {
             log.error(e);

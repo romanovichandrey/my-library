@@ -61,7 +61,7 @@ public class DaoReadersImpl implements Dao<Readers> {
             ps.setObject(4, readers.getCity());
             ps.setObject(5, readers.getStreet());
             ps.executeUpdate();
-            con.close();
+
             log.info("addReader " + readers);
             return readers;
         } catch (SQLException e) {
@@ -86,7 +86,7 @@ public class DaoReadersImpl implements Dao<Readers> {
                         rs.getString("r_tel"), city, street);
                 readersList.add(reader);
             }
-            con.close();
+
             log.info("readersList " + readersList);
             return readersList;
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class DaoReadersImpl implements Dao<Readers> {
             ps.setObject(5, readers.getStreet());
             ps.setInt(6, readers.getIdReader());
             ps.executeUpdate();
-            con.close();
+
             log.info("updateReader " + readers);
         } catch (SQLException e) {
             log.error(e);
@@ -119,7 +119,7 @@ public class DaoReadersImpl implements Dao<Readers> {
             ps = con.prepareStatement(DELETE);
             ps.setInt(1, readers.getIdReader());
             ps.executeUpdate();
-            con.close();
+
             log.info("deleteReader " + readers);
         } catch (SQLException e) {
             log.error(e);

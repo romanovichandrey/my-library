@@ -21,13 +21,13 @@
 
     <dependency>
       <groupId>by.romanovich.it</groupId>
-      <artifactId>my-serv</artifactId>
+      <artifactId>my-domain</artifactId>
     </dependency>
     <dependency>
       <groupId>by.romanovich.it</groupId>
-      <artifactId>my-domain</artifactId>
+      <artifactId>my-service</artifactId>
+      <version>1.0-SNAPAHOT</version>
     </dependency>
-
     <!-- Servlet+JSP+JSTL -->
     <dependency>
       <groupId>javax.servlet</groupId>

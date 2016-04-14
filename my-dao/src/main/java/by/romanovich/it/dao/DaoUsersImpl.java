@@ -19,7 +19,7 @@ import java.util.List;
  * @author Romanovich Andrei
  * @version 1.0
  */
-public class DaoUsersImpl implements Dao<Users> {
+public class DaoUsersImpl implements DaoUsers {
 
     /**@serial Connection for database*/
     private Connection con;
@@ -41,7 +41,9 @@ public class DaoUsersImpl implements Dao<Users> {
 
     private static final String DELETE = "DELETE FROM users WHERE id_user=?;";
 
-    private static final String SELECT_USERS = "SELECT * FROM users WHERE u_login=? AND u_password=?;";
+    private static final String SELECT_USERS = "SELECT * FROM users JOIN readers ON readers.id_reader=users.id_reader " +
+            "JOIN citys on citys.id_city=readers.id_city JOIN streets on streets.id_street=readers.id_street " +
+            "WHERE u_login=? AND u_password=?;";
 
     private DaoUsersImpl(Connection con) {
         this.con = con;
@@ -59,9 +61,9 @@ public class DaoUsersImpl implements Dao<Users> {
             ps = con.prepareStatement(INSERT);
             ps.setString(1, users.getLogin());
             ps.setString(2, users.getPassword());
-            ps.setObject(3, users.getReader());
+            ps.setObject(3, users.getReader().getIdReader());
             ps.executeUpdate();
-            con.close();
+
             log.info("addUser " + users);
             return users;
         } catch (SQLException e) {
@@ -88,7 +90,7 @@ public class DaoUsersImpl implements Dao<Users> {
                 user = new Users(rs.getInt("id_user"), rs.getString("u_login"), rs.getString("u_password"), reader);
                 usersList.add(user);
             }
-            con.close();
+
             log.info("usersList " + usersList);
             return usersList;
         }catch (SQLException e) {
@@ -106,7 +108,7 @@ public class DaoUsersImpl implements Dao<Users> {
             ps.setObject(3, users.getReader());
             ps.setInt(4, users.getIdUser());
             ps.executeUpdate();
-            con.close();
+
             log.info("updateUser " + users);
         } catch (SQLException e) {
             log.error(e);
@@ -119,13 +121,14 @@ public class DaoUsersImpl implements Dao<Users> {
             ps = con.prepareStatement(DELETE);
             ps.setInt(1, users.getIdUser());
             ps.executeUpdate();
-            con.close();
+
             log.info("deleteUser " + users);
         } catch (SQLException e) {
             log.error(e);
         }
     }
 
+    @Override
     public Users getUsersByLoginAndPassword(String login, String password) {
         Users user = null;
         try {
@@ -133,10 +136,17 @@ public class DaoUsersImpl implements Dao<Users> {
             ps.setString(1, login);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
+            Citys city;
+            Streets street;
+            Readers reader;
             if (rs.next()) {
-                user = new Users(rs.getInt("id_user"), rs.getString("u_login"), rs.getString("u_password"));
+                city = new Citys(rs.getInt("id_city"), rs.getString("c_name"));
+                street = new Streets(rs.getInt("id_street"), rs.getString("s_name"));
+                reader = new Readers(rs.getInt("id_reader"), rs.getString("r_name"), rs.getString("r_surname"),
+                        rs.getString("r_tel"), city, street);
+                user = new Users(rs.getInt("id_user"), rs.getString("u_login"), rs.getString("u_password"), reader);
             }
-            con.close();
+
             log.info("user " + user);
             return user;
         } catch (SQLException e) {

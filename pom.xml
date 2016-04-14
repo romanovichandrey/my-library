@@ -25,7 +25,7 @@
     <javax.servlet.jsp-api.version>2.3.1</javax.servlet.jsp-api.version>
     <my-dao.version>1.0-SNAPSHOT</my-dao.version>
     <my-domain.version>1.0-SNAPSHOT</my-domain.version>
-    <my-serv.version>1.0-SNAPSHOT</my-serv.version>
+    <my-service.version>1.0-SNAPSHOT</my-service.version>
   </properties>
 
   <dependencyManagement>
@@ -44,8 +44,8 @@
       </dependency>
       <dependency>
         <groupId>by.romanovich.it</groupId>
-        <artifactId>my-serv</artifactId>
-        <version>${my-serv.version}</version>
+        <artifactId>my-service</artifactId>
+        <version>${my-service.version}</version>
       </dependency>
 
       <dependency>
@@ -112,7 +112,6 @@
           <username>admin1</username>
           <password>1</password>
           <path>/${pom.build.finalName}</path>
-          <warfile>target/${pom.build.finalName}</warfile>
         </configuration>
         <executions>
           <execution>

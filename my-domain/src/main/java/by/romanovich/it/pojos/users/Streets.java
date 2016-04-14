@@ -20,6 +20,10 @@ public class Streets implements Serializable {
     public Streets() {
     }
 
+    public Streets(String name) {
+        this.name = name;
+    }
+
     public Streets(Integer idStreet, String name) {
         this.idStreet = idStreet;
         this.name = name;

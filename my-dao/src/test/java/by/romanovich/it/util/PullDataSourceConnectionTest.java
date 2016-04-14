@@ -13,7 +13,7 @@ import java.sql.Connection;
 public class PullDataSourceConnectionTest extends Assert {
 
     private Connection con;
-    PullDataSourceConnection pull = new PullDataSourceConnection();
+    PullDataSourceConnection pull = PullDataSourceConnection.getPull();
 
     @Test
     public void testReadConnection() throws Exception {
