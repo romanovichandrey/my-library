@@ -22,39 +22,34 @@ public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         Users user;
-        String login;
-        String password;
+        String login = servletRequest.getParameter("login");
+        String password = servletRequest.getParameter("password");
         RequestDispatcher dispatcher;
         ServiceUser serviceUser = ServiceUsersImpl.getServiceUser();
         HttpSession session = ((HttpServletRequest)servletRequest).getSession(false);
         try {
-            login = servletRequest.getParameter("login");
-            password = servletRequest.getParameter("password");
-
-            Boolean bool2 = serviceUser.isCheckAuthUser(login, password);
-            if(bool2) {
-                session.setAttribute("user", serviceUser.getUsersByEmailAndPassword(login, password));
-            }
-            user = (Users)session.getAttribute("user");
-            login = user.getLogin();
-            password = user.getPassword();
-            Boolean bool = serviceUser.isCheckAuthUser(login, password);
-            if(bool) {
-                dispatcher = servletRequest.getRequestDispatcher("/books");
-                dispatcher.forward(servletRequest, servletResponse);
+            if(login != null && password != null) {
+                if(serviceUser.isCheckAuthUser(login, password)) {
+                    session.setAttribute("user", serviceUser.getUsersByEmailAndPassword(login, password));
+                    dispatcher = servletRequest.getRequestDispatcher("/books");
+                    dispatcher.forward(servletRequest, servletResponse);
+                }
             } else {
-                dispatcher = servletRequest.getRequestDispatcher("WEB-INF/views/header.jsp");
-                dispatcher.forward(servletRequest, servletResponse);
+                user = (Users) session.getAttribute("user");
+                if (serviceUser.isCheckAuthUser(user.getLogin(), user.getPassword())) {
+                    dispatcher = servletRequest.getRequestDispatcher("/books");
+                    dispatcher.forward(servletRequest, servletResponse);
+                } else {
+                    dispatcher = servletRequest.getRequestDispatcher("WEB-INF/views/header.jsp");
+                    dispatcher.forward(servletRequest, servletResponse);
+                }
             }
-
         } catch (NullPointerException e) {
             log.error(e);
         }
         dispatcher = servletRequest.getRequestDispatcher("index.jsp");
         dispatcher.forward(servletRequest, servletResponse);
         return;
-
-
     }
 
     @Override

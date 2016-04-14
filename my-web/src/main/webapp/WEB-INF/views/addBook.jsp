@@ -13,7 +13,7 @@
   <title></title>
 </head>
 <body>
-<form method="post" action="addBook">
+<form method="post" action="/addBook">
   <table width="30%" border="1" cellpading="3">
     <thead>
     <tr>
@@ -55,6 +55,6 @@
   <input type="hidden" name="id_user" value="${user.id_user}" />
   <input type="submit" value="Добавить книгу" />
 </form>
-<jsp:include page="/WEB-INF/views/footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

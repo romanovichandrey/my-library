@@ -18,7 +18,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 
-
 public class AddBookController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -36,9 +35,9 @@ public class AddBookController extends HttpServlet {
         List<Categories> categoryList = categoryServ.readAll();
         log.info(categoryList);
         request.setAttribute("categoryList", categoryList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/addBook.jsp");
-        dispatcher.forward(request, response);
 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 
 
