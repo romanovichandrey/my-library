@@ -52,6 +52,7 @@ public class ServiceUsersImpl implements ServiceUser {
             daoReaders.create(readers);
             users = daoUsers.create(users);
             con.commit();
+            log.info("addUser " + users);
             return users;
         } catch (SQLException e) {
             log.error(e);

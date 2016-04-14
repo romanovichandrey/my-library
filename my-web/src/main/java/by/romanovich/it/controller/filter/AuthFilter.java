@@ -26,12 +26,12 @@ public class AuthFilter implements Filter {
         String password = servletRequest.getParameter("password");
         RequestDispatcher dispatcher;
         ServiceUser serviceUser = ServiceUsersImpl.getServiceUser();
-        HttpSession session = ((HttpServletRequest)servletRequest).getSession(false);
+        HttpSession session = ((HttpServletRequest)servletRequest).getSession();
         try {
             if(login != null && password != null) {
                 if(serviceUser.isCheckAuthUser(login, password)) {
                     session.setAttribute("user", serviceUser.getUsersByEmailAndPassword(login, password));
-                    dispatcher = servletRequest.getRequestDispatcher("/books");
+                    dispatcher = servletRequest.getRequestDispatcher("books");
                     dispatcher.forward(servletRequest, servletResponse);
                 }
             } else {

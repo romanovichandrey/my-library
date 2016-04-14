@@ -51,8 +51,6 @@
     </tr>
     </tbody>
   </table>
-  <c:set var="user" value="${sessionScope.user}" />
-  <input type="hidden" name="id_user" value="${user.id_user}" />
   <input type="submit" value="Добавить книгу" />
 </form>
 <jsp:include page="footer.jsp"/>

@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Enumeration;
@@ -66,16 +67,16 @@ public class UpdateBookController extends HttpServlet {
         request.setAttribute("categoryList", categorysList);
 
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("views/updateBook.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/update.jsp");
         dispatcher.forward(request, response);
 
     }
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
         Books book;
-        Users user = new Users();
+        Users user = (Users)session.getAttribute("user");
         Categories category = new Categories();
 
         Integer id_book = Integer.parseInt(request.getParameter("id_book"));
@@ -85,11 +86,11 @@ public class UpdateBookController extends HttpServlet {
         String book_date = request.getParameter("book_date");
         float price = Float.parseFloat(request.getParameter("price"));
         Integer id_cat = Integer.parseInt(request.getParameter("id_cat"));
-        Integer id_user = Integer.parseInt(request.getParameter("id_user"));
+
 
 
         category.setId_cat(id_cat);
-        user.setIdUser(id_user);
+
 
         book = new Books(id_book, name, description, author, book_date, price, user, category);
 

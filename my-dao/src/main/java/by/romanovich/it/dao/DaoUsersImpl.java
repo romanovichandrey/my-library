@@ -61,7 +61,7 @@ public class DaoUsersImpl implements DaoUsers {
             ps = con.prepareStatement(INSERT);
             ps.setString(1, users.getLogin());
             ps.setString(2, users.getPassword());
-            ps.setObject(3, users.getReader().getIdReader());
+            ps.setObject(3, users.getReader());
             ps.executeUpdate();
 
             log.info("addUser " + users);

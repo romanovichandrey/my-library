@@ -52,7 +52,6 @@
     </tbody>
   </table>
   <c:set var="user" value="${sessionScope.user}" />
-  <input type="hidden" name="id_user" value="${user.id_user}" />
   <input type="hidden" name="id_book" value="${id_book}" />
   <input type="submit" value="Изменить" />
 </form>
